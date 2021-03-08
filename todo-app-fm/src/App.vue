@@ -1,11 +1,10 @@
 <template>
 	<BaseHero :bg-image="currentImage" />
-
-	<div
-		class="mx-auto max-w-2xl px-6 py-2 md:py-5"
-	>
-		<TheHeader />
-		<TodoApp />
+	<div class="min-h-screen bg-my-gray-100 dark:bg-dark-blue-800">
+		<div class="mx-auto max-w-2xl px-6 py-2 md:py-5 relative">
+			<TheHeader />
+			<TodoApp />
+		</div>
 	</div>
 </template>
 

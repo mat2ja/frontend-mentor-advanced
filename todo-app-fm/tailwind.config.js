@@ -35,6 +35,7 @@ module.exports = {
             },
             zIndex: {
                 negative: -10,
+                'negative-2': -20,
             },
             letterSpacing: {
                 'most-widest': '.4em',
