@@ -2,7 +2,7 @@
 	<li
 		class="flex cursor-pointer text-my-gray-500 dark:text-dark-grayish-blue-100 select-none"
 	>
-		<label class="flex items-center pl-5 pr-6 pt-5 pb-5 cursor-pointer">
+		<label class="flex items-center p-4 md:p-5 cursor-pointer">
 			<div
 				:class="checkboxStyles"
 				class="checkbox relative w-6 h-6 rounded-full inline-block flex-shrink-0 overflow-hidden"

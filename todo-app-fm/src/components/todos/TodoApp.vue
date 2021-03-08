@@ -1,24 +1,27 @@
 <template>
-	<NewTodo />
+	<section class="text-sm sm:text-base md:text-lg">
+		<NewTodo />
 
-	<base-card
-		v-if="todosCount == 0"
-		class="mt-5 mb-6 md:mt-8 text-lg pl-5 pr-5 pt-12 pb-12 text-center"
-	>
-		<p
-			class="push-down-1 font-bold text-2xl text-my-gray-500 dark:text-dark-grayish-blue-200"
+		<base-card
+			v-if="isEmpty"
+			class="mt-5 mb-6 md:mt-8 pl-5 pr-5 pt-12 pb-12 text-center"
 		>
-			Add some todos! 🥳
-		</p>
-	</base-card>
-	<TodoList
-		v-else
-		:todos="todos"
-		:count="todosLeftCount"
-		@toggle-todo="toggleTodoState"
-		@delete-todo="deleteTodo"
-		@clear-completed="clearCompletedTodos"
-	/>
+			<p
+				class="push-down-1 font-bold text-2xl text-my-gray-500 dark:text-dark-grayish-blue-200"
+			>
+				Add some todos! 🥳
+			</p>
+		</base-card>
+
+		<TodoList
+			v-else
+			:todos="todos"
+			:count="todosLeftCount"
+			@toggle-todo="toggleTodoState"
+			@delete-todo="deleteTodo"
+			@clear-completed="clearCompletedTodos"
+		/>
+	</section>
 </template>
 
 <script>
@@ -34,7 +37,6 @@ export default {
 	provide() {
 		return {
 			addNewTodo: this.addNewTodo,
-			uncompletedTodos: this.uncompletedTodos,
 		};
 	},
 	data() {
@@ -86,11 +88,11 @@ export default {
 		todosLeftCount() {
 			return this.uncompletedTodos.length;
 		},
-		completedTodos() {
-			return this.todos.filter((todo) => todo.done);
-		},
 		uncompletedTodos() {
 			return this.todos.filter((todo) => !todo.done);
+		},
+		isEmpty() {
+			return this.todos.length === 0;
 		},
 	},
 };

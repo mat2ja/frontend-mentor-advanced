@@ -1,5 +1,5 @@
 <template>
-	<base-card class="text-lg">
+	<base-card>
 		<TodoItem isNewTodo>
 			<input
 				type="text"

@@ -1,8 +1,15 @@
 <template>
 	<base-card
-		class="mt-5 mb-6 md:mt-8 p-0 text-lg divide-y-2 divide-my-gray-200 dark:divide-dark-grayish-blue-500"
+		class="mt-5 mb-5 md:mt-8 p-0 divide-y-2 divide-my-gray-200 dark:divide-dark-grayish-blue-500"
 	>
+		<p
+			v-if="filteredTodos.length === 0"
+			class="push-down-1 font-bold text-2xl text-my-gray-500 dark:text-dark-grayish-blue-200 text-center p-5"
+		>
+			Empty 🍂
+		</p>
 		<ul
+			v-else
 			class="list-none divide-y-2 divide-my-gray-200 dark:divide-dark-grayish-blue-500"
 		>
 			<TodoItem
@@ -21,8 +28,15 @@
 			@clear-completed="$emit('clear-completed')"
 		>
 			<template #filters>
-				<TodoFilter @set-filter="setFilter" /> </template
+				<TodoFilter
+					@set-filter="setFilter"
+					class="hidden md:block"
+				/> </template
 		></TodoControls>
+	</base-card>
+
+	<base-card class="p-5 flex justify-around md:hidden">
+		<TodoFilter @set-filter="setFilter" />
 	</base-card>
 </template>
 
