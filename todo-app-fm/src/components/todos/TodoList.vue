@@ -35,7 +35,7 @@
 		></TodoControls>
 	</base-card>
 
-	<base-card class="p-5 flex justify-around md:hidden">
+	<base-card class="p-4 md:p-5 flex justify-around md:hidden">
 		<TodoFilter @set-filter="setFilter" />
 	</base-card>
 </template>
@@ -47,7 +47,7 @@ import TodoFilter from './TodoFilter.vue';
 
 export default {
 	props: ['todos', 'count'],
-	emits: ['toggle-todo', 'clear-completed'],
+	emits: ['toggle-todo', 'clear-completed', 'delete-todo'],
 	components: {
 		TodoItem,
 		TodoControls,
