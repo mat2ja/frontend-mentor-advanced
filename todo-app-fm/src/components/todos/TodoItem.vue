@@ -13,6 +13,7 @@
 				<CheckmarkIcon :hidden="!checked || isNewTodo" />
 
 				<input
+					v-if="!isNewTodo"
 					type="checkbox"
 					@input="toggleCheckbox"
 					class="hidden"
@@ -62,8 +63,10 @@ export default {
 	},
 	methods: {
 		toggleCheckbox() {
-			console.log('TOGGLED CHECKBOX 🤐');
-			this.checked = !this.checked;
+			if (!this.isNewTodo) {
+				console.log('toggled 😎🥰');
+				this.checked = !this.checked;
+			}
 		},
 	},
 	computed: {

@@ -1,4 +1,5 @@
 <template>
+ <base-card>
 	<TodoItem isNewTodo>
 		<input
 			type="text"
@@ -8,6 +9,7 @@
 			@keydown.enter="addNewTodo"
 		/>
 	</TodoItem>
+    </base-card>
 </template>
 
 <script>

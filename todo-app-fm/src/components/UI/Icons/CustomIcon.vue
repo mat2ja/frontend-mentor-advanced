@@ -1,7 +1,5 @@
 <template>
-	<div>
-		<slot v-if="!hidden"></slot>
-	</div>
+	<slot v-if="!hidden"></slot>
 </template>
 
 <script>
@@ -17,8 +15,5 @@ export default {
 </script>
 
 <style scoped>
-div {
-	position: relative;
-}
 </style>
 

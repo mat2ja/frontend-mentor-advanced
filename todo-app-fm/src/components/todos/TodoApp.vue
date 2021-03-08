@@ -1,21 +1,22 @@
 <template>
-	<base-card>
-		<NewTodo @add-todo="addNewTodo" />
-	</base-card>
+	<NewTodo @add-todo="addNewTodo" />
 
 	<base-card class="mt-5 md:mt-8">
 		<TodoList :todos="todos" />
+		<TodoControls />
 	</base-card>
 </template>
 
 <script>
 import NewTodo from './NewTodo.vue';
 import TodoList from './TodoList.vue';
+import TodoControls from './TodoControls.vue';
 
 export default {
 	components: {
 		NewTodo,
 		TodoList,
+		TodoControls,
 	},
 	data() {
 		return {
@@ -45,7 +46,7 @@ export default {
 	},
 	methods: {
 		addNewTodo(newTodo) {
-            console.log(newTodo)
+			console.log(newTodo);
 			this.todos.unshift(newTodo);
 		},
 	},

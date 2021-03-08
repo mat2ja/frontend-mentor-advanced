@@ -16,7 +16,12 @@
 </template>
 
 <script>
+import CustomIcon from './CustomIcon.vue';
+
 export default {
+	components: {
+		CustomIcon,
+	},
 	props: {
 		hidden: {
 			type: Boolean,
