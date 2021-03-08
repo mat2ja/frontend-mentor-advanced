@@ -1,13 +1,22 @@
 <template>
-	<NewTodo @add-todo="addNewTodo" />
+	<NewTodo />
 
-	<base-card class="mt-5 md:mt-8">
-		<TodoList :todos="todos" />
-		<TodoControls />
+	<base-card
+		v-if="todosCount == 0"
+		class="mt-5 mb-6 md:mt-8 text-lg p-5 text-center text-my-gray-500 dark:text-dark-grayish-blue-100"
+	>
+		<p class="push-down-1">Add some todos</p>
 	</base-card>
+	<TodoList v-else :todos="todos" @toggle-todo="toggleTodoState" />
+
+	<TodoControls
+		:count="todosLeftCount"
+		@clear-completed="clearCompletedTodos"
+	/>
 </template>
 
 <script>
+import { nanoid } from 'nanoid';
 import NewTodo from './NewTodo.vue';
 import TodoList from './TodoList.vue';
 import TodoControls from './TodoControls.vue';
@@ -18,36 +27,63 @@ export default {
 		TodoList,
 		TodoControls,
 	},
+	provide() {
+		return {
+			addNewTodo: this.addNewTodo,
+		};
+	},
 	data() {
 		return {
 			todos: [
 				{
-					id: 1,
+					id: nanoid(8),
 					content: 'Jog around the part 3x',
 					done: false,
 				},
 				{
-					id: 2,
+					id: nanoid(8),
 					content: '10 minutes meditations',
-					done: false,
+					done: true,
 				},
 				{
-					id: 3,
+					id: nanoid(8),
 					content: 'Read for 1 hour',
 					done: false,
 				},
 				{
-					id: 4,
+					id: nanoid(8),
 					content: 'Pick up groceries',
 					done: false,
 				},
 			],
+			counter: 0,
 		};
 	},
 	methods: {
 		addNewTodo(newTodo) {
-			console.log(newTodo);
 			this.todos.unshift(newTodo);
+		},
+		toggleTodoState(todoId) {
+			const toggledTodo = this.todos.find((todo) => todo.id === todoId);
+			toggledTodo.done = !toggledTodo.done;
+		},
+		clearCompletedTodos() {
+			console.log('cleared completd'); //todo
+			this.todos = this.uncompletedTodos;
+		},
+	},
+	computed: {
+		todosCount() {
+			return this.todos.length;
+		},
+		todosLeftCount() {
+			return this.uncompletedTodos.length;
+		},
+		completedTodos() {
+			return this.todos.filter((todo) => todo.done);
+		},
+		uncompletedTodos() {
+			return this.todos.filter((todo) => !todo.done);
 		},
 	},
 };

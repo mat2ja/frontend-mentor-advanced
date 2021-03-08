@@ -1,24 +1,13 @@
 <template>
 	<li
-		class="flex text-lg cursor-pointer text-my-gray-500 dark:text-dark-grayish-blue-100 select-none"
+		class="flex cursor-pointer text-my-gray-500 dark:text-dark-grayish-blue-100 select-none"
 	>
-		<label
-			class="flex items-center pl-5 pr-6 pt-5 pb-5 cursor-pointer"
-			@click="toggleCheckbox"
-		>
+		<label class="flex items-center pl-5 pr-6 pt-5 pb-5 cursor-pointer">
 			<div
 				:class="checkboxStyles"
 				class="checkbox relative w-6 h-6 rounded-full inline-block flex-shrink-0 overflow-hidden"
 			>
 				<CheckmarkIcon :hidden="!checked || isNewTodo" />
-
-				<input
-					v-if="!isNewTodo"
-					type="checkbox"
-					@input="toggleCheckbox"
-					class="hidden"
-					:checked="checked"
-				/>
 			</div>
 		</label>
 		<div class="flex-grow flex" :class="itemCheckedStyles">
@@ -47,25 +36,23 @@ import CheckmarkIcon from '../UI/Icons/CheckmarkIcon.vue';
 export default {
 	components: { CloseIcon, CheckmarkIcon },
 	props: {
-		isNewTodo: {
-			type: Boolean,
-			default: false,
-		},
-		content: {
-			type: String,
-			required: false,
-		},
+		isNewTodo: { type: Boolean, default: false },
+		done: { type: Boolean, required: false },
+		content: { type: String, required: false },
+		id: { type: String, required: false },
 	},
+	emits: ['toggle-todo'],
 	data() {
 		return {
-			checked: false,
+			checked: this.done,
 		};
 	},
 	methods: {
 		toggleCheckbox() {
 			if (!this.isNewTodo) {
-				console.log('toggled 😎🥰');
 				this.checked = !this.checked;
+				console.log('🤩', this.id);
+				this.$emit('toggle-todo', this.id);
 			}
 		},
 	},

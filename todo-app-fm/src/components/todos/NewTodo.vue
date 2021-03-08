@@ -1,18 +1,19 @@
 <template>
- <base-card>
-	<TodoItem isNewTodo>
-		<input
-			type="text"
-			placeholder="Create a new todo..."
-			class="push-down-2 focus:outline-none flex-1 bg-transparent placeholder-my-gray-400 dark:placeholder-dark-grayish-blue-300 pr-8"
-			v-model.trim="currentTodo"
-			@keydown.enter="addNewTodo"
-		/>
-	</TodoItem>
-    </base-card>
+	<base-card class="text-lg">
+		<TodoItem isNewTodo>
+			<input
+				type="text"
+				placeholder="Create a new todo..."
+				class="push-down-2 focus:outline-none flex-1 bg-transparent placeholder-my-gray-400 dark:placeholder-dark-grayish-blue-300 pr-8"
+				v-model.trim="currentTodo"
+				@keydown.enter="addTodo"
+			/>
+		</TodoItem>
+	</base-card>
 </template>
 
 <script>
+import { nanoid } from 'nanoid';
 import TodoItem from './TodoItem.vue';
 
 export default {
@@ -20,19 +21,21 @@ export default {
 		TodoItem,
 	},
 	emits: ['add-todo'],
+	inject: ['addNewTodo'],
 	data() {
 		return {
 			currentTodo: '',
 		};
 	},
 	methods: {
-		addNewTodo() {
-			console.log('adding new todo in NewTodo.vue');
-			this.$emit('add-todo', {
-				id: new Date().toLocaleDateString,
+		addTodo() {
+			const newTodo = {
+				id: nanoid(8),
 				content: this.currentTodo,
 				done: false,
-			});
+			};
+			console.log(newTodo.id);
+			this.addNewTodo(newTodo);
 			this.currentTodo = '';
 		},
 	},
