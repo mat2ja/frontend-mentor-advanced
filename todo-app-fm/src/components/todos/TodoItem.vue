@@ -23,6 +23,7 @@
 		<span
 			v-if="!isNewTodo"
 			class="ml-auto flex items-center pl-5 pr-5 flex-shrink-0"
+			@click="$emit('delete-todo', id)"
 		>
 			<CloseIcon />
 		</span>
@@ -51,7 +52,6 @@ export default {
 		toggleCheckbox() {
 			if (!this.isNewTodo) {
 				this.checked = !this.checked;
-				console.log('🤩', this.id);
 				this.$emit('toggle-todo', this.id);
 			}
 		},

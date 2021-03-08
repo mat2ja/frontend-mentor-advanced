@@ -34,7 +34,6 @@ export default {
 				content: this.currentTodo,
 				done: false,
 			};
-			console.log(newTodo.id);
 			this.addNewTodo(newTodo);
 			this.currentTodo = '';
 		},

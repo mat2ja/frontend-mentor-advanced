@@ -1,17 +1,20 @@
 <template>
-	<base-card class="p-6">
-		<div
-			class="flex items-center justify-between text-sm text-dark-grayish-blue-300"
+	<div
+		class="flex items-center justify-between text-sm text-my-gray-400 dark:text-dark-grayish-blue-300 p-5"
+	>
+		<p>{{ count || 0 }} items left</p>
+		<button
+			@click="$emit('clear-completed')"
+			class="hover:text-my-gray-500 focus:outline-none"
 		>
-			<p>{{ count || 0 }} items left</p>
-			<button @click="$emit('clear-completed')">Clear completed</button>
-		</div>
-	</base-card>
+			Clear completed
+		</button>
+	</div>
 </template>
 
 <script>
 export default {
-	props: ['count'],
+    props: ['count'],
 	emits: ['clear-completed'],
 };
 </script>

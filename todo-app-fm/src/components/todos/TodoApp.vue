@@ -3,14 +3,20 @@
 
 	<base-card
 		v-if="todosCount == 0"
-		class="mt-5 mb-6 md:mt-8 text-lg p-5 text-center text-my-gray-500 dark:text-dark-grayish-blue-100"
+		class="mt-5 mb-6 md:mt-8 text-lg pl-5 pr-5 pt-12 pb-12 text-center"
 	>
-		<p class="push-down-1">Add some todos</p>
+		<p
+			class="push-down-1 font-bold text-2xl text-my-gray-500 dark:text-dark-grayish-blue-200"
+		>
+			Add some todos! 🥳
+		</p>
 	</base-card>
-	<TodoList v-else :todos="todos" @toggle-todo="toggleTodoState" />
-
-	<TodoControls
+	<TodoList
+		v-else
+		:todos="todos"
 		:count="todosLeftCount"
+		@toggle-todo="toggleTodoState"
+		@delete-todo="deleteTodo"
 		@clear-completed="clearCompletedTodos"
 	/>
 </template>
@@ -19,17 +25,16 @@
 import { nanoid } from 'nanoid';
 import NewTodo from './NewTodo.vue';
 import TodoList from './TodoList.vue';
-import TodoControls from './TodoControls.vue';
 
 export default {
 	components: {
 		NewTodo,
 		TodoList,
-		TodoControls,
 	},
 	provide() {
 		return {
 			addNewTodo: this.addNewTodo,
+			uncompletedTodos: this.uncompletedTodos,
 		};
 	},
 	data() {
@@ -60,15 +65,17 @@ export default {
 		};
 	},
 	methods: {
-		addNewTodo(newTodo) {
-			this.todos.unshift(newTodo);
-		},
 		toggleTodoState(todoId) {
 			const toggledTodo = this.todos.find((todo) => todo.id === todoId);
 			toggledTodo.done = !toggledTodo.done;
 		},
+		addNewTodo(newTodo) {
+			this.todos.unshift(newTodo);
+		},
+		deleteTodo(todoId) {
+			this.todos = this.todos.filter((todo) => todo.id != todoId);
+		},
 		clearCompletedTodos() {
-			console.log('cleared completd'); //todo
 			this.todos = this.uncompletedTodos;
 		},
 	},
