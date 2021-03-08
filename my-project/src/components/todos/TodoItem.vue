@@ -10,19 +10,8 @@
 				:class="checkboxStyles"
 				class="checkbox relative w-6 h-6 rounded-full inline-block flex-shrink-0 overflow-hidden"
 			>
-				<svg
-					v-if="checked && !isNewTodo"
-					class="center w-4 h-4 text-my-gray-200"
-					fill="currentColor"
-					viewBox="0 0 20 20"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						fill-rule="evenodd"
-						d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-						clip-rule="evenodd"
-					></path>
-				</svg>
+				<CheckmarkIcon :hidden="!checked || isNewTodo" />
+
 				<input
 					type="checkbox"
 					@input="toggleCheckbox"
@@ -45,24 +34,17 @@
 			v-if="!isNewTodo"
 			class="ml-auto flex items-center pl-5 pr-5 flex-shrink-0"
 		>
-			<svg
-				class="w-6 h-6 text-my-gray-300 dark:text-dark-grayish-blue-400"
-				fill="currentColor"
-				viewBox="0 0 20 20"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<path
-					fill-rule="evenodd"
-					d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-					clip-rule="evenodd"
-				></path>
-			</svg>
+			<CloseIcon />
 		</span>
 	</li>
 </template>
 
 <script>
+import CloseIcon from '../UI/Icons/CloseIcon.vue';
+import CheckmarkIcon from '../UI/Icons/CheckmarkIcon.vue';
+
 export default {
+	components: { CloseIcon, CheckmarkIcon },
 	props: {
 		isNewTodo: {
 			type: Boolean,
@@ -80,7 +62,7 @@ export default {
 	},
 	methods: {
 		toggleCheckbox() {
-			console.log('checked');
+			console.log('TOGGLED CHECKBOX 🤐');
 			this.checked = !this.checked;
 		},
 	},
@@ -123,12 +105,5 @@ export default {
 		hsl(192, 100%, 67%),
 		hsl(280, 87%, 65%)
 	);
-}
-
-svg.center {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 }
 </style>
