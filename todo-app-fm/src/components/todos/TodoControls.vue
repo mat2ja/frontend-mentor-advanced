@@ -6,7 +6,7 @@
 		<slot name="filters"></slot>
 		<button
 			@click="$emit('clear-completed')"
-			class="hover:text-my-gray-500 focus:outline-none flex-1 text-right"
+			class="hover:text-my-gray-500 dark:hover:text-dark-grayish-blue-200 focus:outline-none flex-1 text-right"
 		>
 			Clear completed
 		</button>
