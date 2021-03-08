@@ -1,7 +1,9 @@
 <template>
 	<BaseHero :bg-image="currentImage" />
 
-	<div class="mx-auto max-w-2xl px-6 py-2 md:py-8">
+	<div
+		class="mx-auto max-w-2xl px-6 py-2 md:py-5"
+	>
 		<TheHeader />
 		<TodoApp />
 	</div>

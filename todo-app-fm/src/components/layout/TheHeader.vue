@@ -1,6 +1,6 @@
 <template>
 	<header
-		class="text-my-gray-100 py-7 md:py-12 flex justify-between text-3xl md:text-4xl"
+		class="text-my-gray-100 py-7 md:py-11 flex justify-between text-3xl md:text-4xl"
 	>
 		<span class="push-down-4 font-bold tracking-most-widest">TODO</span>
 		<button class="btn" @click="toggleTheme">

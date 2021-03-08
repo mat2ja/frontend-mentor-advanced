@@ -2,7 +2,7 @@
 	<div
 		class="flex items-center justify-between text-sm text-my-gray-400 dark:text-dark-grayish-blue-300 p-4"
 	>
-		<p class="flex-1">{{ count || 0 }} items left</p>
+		<p class="flex-1">{{ itemsLeft }}</p>
 		<slot name="filters"></slot>
 		<button
 			@click="$emit('clear-completed')"
@@ -17,5 +17,16 @@
 export default {
 	props: ['count'],
 	emits: ['clear-completed'],
+	computed: {
+		itemsLeft() {
+			if (this.count === 0) {
+				return 'No items left';
+			} else if (this.count === 1) {
+				return `${this.count} item left`;
+			} else {
+				return `${this.count} items left`;
+			}
+		},
+	},
 };
 </script>

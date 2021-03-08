@@ -4,10 +4,10 @@
 
 		<base-card
 			v-if="isEmpty"
-			class="mt-5 mb-6 md:mt-8 pl-5 pr-5 pt-12 pb-12 text-center"
+			class="mt-5 mb-6 md:mt-8 pl-5 pr-5 pt-8 pb-8 text-center"
 		>
 			<p
-				class="push-down-1 font-bold text-2xl text-my-gray-500 dark:text-dark-grayish-blue-200"
+				class="push-down-2 font-bold text-3xl text-my-gray-500 dark:text-dark-grayish-blue-200"
 			>
 				Add some todos! 🥳
 			</p>
