@@ -3,15 +3,15 @@
 		class="flex text-lg cursor-pointer text-my-gray-500 dark:text-dark-grayish-blue-100 select-none"
 	>
 		<label
-			class="flex items-center pl-5 pr-6 pt-4 pb-4 cursor-pointer"
+			class="flex items-center pl-5 pr-6 pt-5 pb-5 cursor-pointer"
 			@click="toggleCheckbox"
 		>
 			<div
-				:class="[labelCheckedStyles, { checked: checked }]"
-				class="relative w-6 h-6 rounded-full inline-block flex-shrink-0 overflow-hidden"
+				:class="checkboxStyles"
+				class="checkbox relative w-6 h-6 rounded-full inline-block flex-shrink-0 overflow-hidden"
 			>
 				<svg
-					v-if="checked"
+					v-if="checked && !isNewTodo"
 					class="center w-4 h-4 text-my-gray-200"
 					fill="currentColor"
 					viewBox="0 0 20 20"
@@ -72,14 +72,10 @@ export default {
 			type: String,
 			required: false,
 		},
-		isMarkedDone: {
-			type: Boolean,
-			required: false,
-		},
 	},
 	data() {
 		return {
-			checked: this.isMarkedDone,
+			checked: false,
 		};
 	},
 	methods: {
@@ -99,13 +95,13 @@ export default {
 			}
 			return {};
 		},
-		labelCheckedStyles() {
-			if (this.checked) {
-				return ['border-transparent'];
+		checkboxStyles() {
+			if (this.checked && !this.isNewTodo) {
+				return ['checked', 'border-transparent'];
 			}
 			return [
 				'border-2',
-				'border-my-gray-300',
+				'border-my-gray-200',
 				'dark:border-dark-grayish-blue-500',
 			];
 		},
@@ -114,7 +110,7 @@ export default {
 </script>
 
 <style scoped>
-label div.checked::before {
+.checkbox.checked::before {
 	content: '';
 	position: absolute;
 	top: -1px;
