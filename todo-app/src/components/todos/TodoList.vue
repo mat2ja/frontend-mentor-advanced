@@ -1,10 +1,10 @@
 <template>
 	<base-card
-		class="mt-5 mb-5 md:mt-8 p-0 divide-y-2 divide-my-gray-200 dark:divide-dark-grayish-blue-500"
+		class="p-0 mt-5 mb-5 divide-y-2 md:mt-8 divide-my-gray-200 dark:divide-dark-grayish-blue-500"
 	>
 		<p
 			v-if="filteredTodos.length === 0"
-			class="push-down-1 font-bold text-2xl text-my-gray-500 dark:text-dark-grayish-blue-200 text-center p-5"
+			class="p-5 text-2xl font-bold text-center push-down-1 text-my-gray-500 dark:text-dark-grayish-blue-200"
 		>
 			Empty 🍂
 		</p>
@@ -18,8 +18,8 @@
 				:id="todo.id"
 				:content="todo.content"
 				:done="todo.done"
-				@toggle-todo="toggleTodo"
-				@delete-todo="deleteTodo"
+				@toggle-todo="$emit('toggle-todo', $event)"
+				@delete-todo="$emit('delete-todo', $event)"
 			/>
 		</ul>
 
@@ -35,7 +35,7 @@
 		></TodoControls>
 	</base-card>
 
-	<base-card class="p-4 md:p-5 flex justify-around md:hidden">
+	<base-card class="flex justify-around p-4 md:p-5 md:hidden">
 		<TodoFilter @set-filter="setFilter" />
 	</base-card>
 </template>
@@ -47,7 +47,7 @@ import TodoFilter from './TodoFilter.vue';
 
 export default {
 	props: ['todos', 'count'],
-	emits: ['toggle-todo', 'clear-completed', 'delete-todo'],
+	emits: ['toggle-todo', 'delete-todo', 'clear-completed'],
 	components: {
 		TodoItem,
 		TodoControls,
@@ -59,12 +59,6 @@ export default {
 		};
 	},
 	methods: {
-		toggleTodo(todoId) {
-			this.$emit('toggle-todo', todoId);
-		},
-		deleteTodo(todoId) {
-			this.$emit('delete-todo', todoId);
-		},
 		setFilter(selectedFilter) {
 			this.currentFilter = selectedFilter;
 		},

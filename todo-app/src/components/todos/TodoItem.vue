@@ -1,22 +1,22 @@
 <template>
 	<li
-		class="flex cursor-pointer text-my-gray-500 dark:text-dark-grayish-blue-100 select-none"
+		class="flex cursor-pointer select-none text-my-gray-500 dark:text-dark-grayish-blue-100"
 	>
 		<label
-			class="flex items-center p-4 md:p-5 cursor-pointer"
+			class="flex items-center p-4 cursor-pointer md:p-5"
 			@click="toggleCheckbox"
 		>
 			<div
 				:class="checkboxStyles"
-				class="checkbox relative w-6 h-6 rounded-full inline-block flex-shrink-0 overflow-hidden"
+				class="relative flex-shrink-0 inline-block w-6 h-6 overflow-hidden rounded-full checkbox"
 			>
-				<CheckmarkIcon :hidden="!checked || isNewTodo" />
+				<CheckmarkIcon v-if="checked && !isNewTodo" />
 			</div>
 		</label>
-		<div class="flex-grow flex" :class="itemCheckedStyles">
+		<div class="flex flex-grow" :class="itemCheckedStyles">
 			<span
 				v-if="!isNewTodo"
-				class="push-down-1 flex items-center flex-grow"
+				class="flex items-center flex-grow push-down-1"
 				@click="toggleCheckbox"
 			>
 				{{ content }}
@@ -25,7 +25,7 @@
 		</div>
 		<span
 			v-if="!isNewTodo"
-			class="ml-auto flex items-center pl-5 pr-5 flex-shrink-0"
+			class="flex items-center flex-shrink-0 pl-5 pr-5 ml-auto"
 			@click="$emit('delete-todo', id)"
 		>
 			<CloseIcon />

@@ -1,7 +1,7 @@
 <template>
 	<BaseHero :bg-image="currentImage" />
 	<div class="min-h-screen bg-my-gray-100 dark:bg-dark-blue-800">
-		<div class="mx-auto max-w-2xl px-6 py-2 md:py-5 relative">
+		<div class="relative max-w-2xl px-6 py-2 mx-auto md:py-5">
 			<TheHeader />
 			<TodoApp />
 		</div>
