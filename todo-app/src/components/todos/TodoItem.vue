@@ -10,7 +10,7 @@
 		>
 			<div
 				:class="checkboxStyles"
-				class="relative flex-shrink-0 inline-block w-5 h-5 md:w-6 md:h-6 overflow-hidden rounded-full checkbox group-hover:border-my-purple transition duration-300 ease-in-out"
+				class="relative flex-shrink-0 inline-block w-5 h-5 md:w-6 md:h-6 overflow-hidden rounded-full checkbox group-hover:border-my-purple"
 			>
 				<CheckmarkIcon v-if="checked && !isNewTodo" />
 			</div>

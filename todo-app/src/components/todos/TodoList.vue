@@ -115,41 +115,4 @@ export default {
 .list-move {
 	transition: transform 500ms ease-in-out;
 }
-
-/* 
-
-.list-move {
-	transition: transform 1s;
-}
-
-.list-enter-active {
-	animation: slide-in 0.5s ease-out forwards;
-	transition: opacity 0.5s;
-}
-
-.list-leave-active {
-	position: absolute;
-	width: 100%;
-	animation: slide-out 0.5s ease-out forwards;
-	transition: opacity 0.5s;
-	opacity: 0;
-}
-
-@keyframes slide-in {
-	from {
-		transform: translateY(-20px);
-	}
-	to {
-		transform: translateY(0px);
-	}
-}
-
-@keyframes slide-out {
-	from {
-		transform: translateX(0px);
-	}
-	to {
-		transform: translateX(350px);
-	}
-} */
 </style>
