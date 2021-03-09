@@ -1,26 +1,28 @@
 <template>
 	<base-card
-		class="p-0 mt-5 mb-5 divide-y-2 md:mt-8 divide-my-gray-200 dark:divide-dark-grayish-blue-500"
+		class="p-0 mb-5 divide-y-2 divide-my-gray-200 dark:divide-dark-grayish-blue-500"
 	>
 		<p
 			v-if="filteredTodos.length === 0"
 			class="p-5 text-2xl font-bold text-center push-down-1 text-my-gray-500 dark:text-dark-grayish-blue-200"
 		>
-			Empty 🍂
+			Nothing here 🍂
 		</p>
 		<ul
 			v-else
 			class="list-none divide-y-2 divide-my-gray-200 dark:divide-dark-grayish-blue-500"
 		>
-			<TodoItem
-				v-for="todo in filteredTodos"
-				:key="todo.id"
-				:id="todo.id"
-				:content="todo.content"
-				:done="todo.done"
-				@toggle-todo="$emit('toggle-todo', $event)"
-				@delete-todo="$emit('delete-todo', $event)"
-			/>
+			<transition-group name="list" mode="out-in">
+				<TodoItem
+					v-for="todo in filteredTodos"
+					:key="todo.id"
+					:id="todo.id"
+					:content="todo.content"
+					:done="todo.done"
+					@toggle-todo="$emit('toggle-todo', $event)"
+					@delete-todo="$emit('delete-todo', $event)"
+				/>
+			</transition-group>
 		</ul>
 
 		<TodoControls
@@ -77,3 +79,25 @@ export default {
 	},
 };
 </script>
+
+<style scoped>
+.list-enter-active {
+	transition: all 500ms ease-out 150ms;
+}
+.list-leave-active {
+	transition: all 500ms ease-in;
+}
+.list-enter-from {
+	opacity: 0;
+	transform: translateX(-20px);
+}
+
+.list-leave-to {
+	opacity: 0;
+	transform: translateX(50px);
+}
+
+.list-move {
+	transition: transform 500ms ease-out;
+}
+</style>

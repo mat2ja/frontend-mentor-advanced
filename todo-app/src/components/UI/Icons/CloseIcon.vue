@@ -1,6 +1,6 @@
 <template>
 	<svg
-		class="w-6 h-6 text-my-gray-300 dark:text-dark-grayish-blue-400"
+		class="w-5 h-5 md:w-6 md:h-6 text-my-gray-300 dark:text-dark-grayish-blue-400 group-hover:text-my-gray-400 dark:hover:text-dark-grayish-blue-300 transition duration-300 ease-in-out"
 		fill="currentColor"
 		viewBox="0 0 20 20"
 		xmlns="http://www.w3.org/2000/svg"

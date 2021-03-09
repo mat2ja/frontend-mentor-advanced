@@ -4,7 +4,7 @@
 
 		<base-card
 			v-if="isEmpty"
-			class="mt-5 mb-6 md:mt-8 pl-5 pr-5 pt-8 pb-8 text-center"
+			class="pl-5 pr-5 pt-8 pb-8 text-center"
 		>
 			<p
 				class="push-down-2 font-bold text-3xl text-my-gray-500 dark:text-dark-grayish-blue-200"
@@ -44,22 +44,32 @@ export default {
 			todos: [
 				{
 					id: nanoid(8),
-					content: 'Jog around the part 3x',
-					done: false,
-				},
-				{
-					id: nanoid(8),
-					content: '10 minutes meditations',
+					content: 'Learn Vue',
 					done: true,
 				},
 				{
 					id: nanoid(8),
-					content: 'Read for 1 hour',
+					content: 'Get a girlfriend',
 					done: false,
 				},
 				{
 					id: nanoid(8),
-					content: 'Pick up groceries',
+					content: 'Graduate',
+					done: false,
+				},
+				{
+					id: nanoid(8),
+					content: 'Get a job',
+					done: false,
+				},
+				{
+					id: nanoid(8),
+					content: 'Get a car',
+					done: false,
+				},
+				{
+					id: nanoid(8),
+					content: 'Get a better girlfriend',
 					done: false,
 				},
 			],

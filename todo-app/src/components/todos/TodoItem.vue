@@ -1,14 +1,16 @@
 <template>
 	<li
 		class="flex cursor-pointer select-none text-my-gray-500 dark:text-dark-grayish-blue-100"
+		@mouseover="todoIsHovered = true"
+		@mouseleave="todoIsHovered = false"
 	>
 		<label
-			class="flex items-center p-4 cursor-pointer md:p-5"
+			class="flex items-center py-4 pl-6 pr-5 md:py-5 md:pl-7 md:pr-6 cursor-pointer group"
 			@click="toggleCheckbox"
 		>
 			<div
 				:class="checkboxStyles"
-				class="relative flex-shrink-0 inline-block w-6 h-6 overflow-hidden rounded-full checkbox"
+				class="relative flex-shrink-0 inline-block w-5 h-5 md:w-6 md:h-6 overflow-hidden rounded-full checkbox group-hover:border-my-purple transition duration-300 ease-in-out"
 			>
 				<CheckmarkIcon v-if="checked && !isNewTodo" />
 			</div>
@@ -16,7 +18,7 @@
 		<div class="flex flex-grow" :class="itemCheckedStyles">
 			<span
 				v-if="!isNewTodo"
-				class="flex items-center flex-grow push-down-1"
+				class="flex items-center flex-grow push-down-1 md:push-down-2 py-2 pr-6"
 				@click="toggleCheckbox"
 			>
 				{{ content }}
@@ -24,8 +26,8 @@
 			<slot v-else></slot>
 		</div>
 		<span
-			v-if="!isNewTodo"
-			class="flex items-center flex-shrink-0 pl-5 pr-5 ml-auto"
+			v-show="!isNewTodo && todoIsHovered"
+			class="flex items-center flex-shrink-0 px-5 ml-auto group"
 			@click="$emit('delete-todo', id)"
 		>
 			<CloseIcon />
@@ -49,6 +51,7 @@ export default {
 	data() {
 		return {
 			checked: this.done,
+			todoIsHovered: false,
 		};
 	},
 	methods: {

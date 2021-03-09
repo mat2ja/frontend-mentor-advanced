@@ -1,5 +1,5 @@
 <template>
-	<base-card>
+	<base-card class="mb-5 md:mb-6">
 		<TodoItem isNewTodo>
 			<input
 				type="text"
