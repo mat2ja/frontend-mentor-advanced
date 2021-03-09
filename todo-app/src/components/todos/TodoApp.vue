@@ -2,10 +2,7 @@
 	<section class="text-sm sm:text-base md:text-lg">
 		<NewTodo />
 
-		<base-card
-			v-if="isEmpty"
-			class="pl-5 pr-5 pt-8 pb-8 text-center"
-		>
+		<base-card v-if="isEmpty" class="pl-5 pr-5 pt-8 pb-8 text-center">
 			<p
 				class="push-down-2 font-bold text-3xl text-my-gray-500 dark:text-dark-grayish-blue-200"
 			>
@@ -86,6 +83,8 @@ export default {
 		},
 		deleteTodo(todoId) {
 			this.todos = this.todos.filter((todo) => todo.id != todoId);
+			// const todoIdx = this.todos.map((todo) => todo.id).indexOf(todoId);
+			// this.todos.splice(todoIdx, 1);
 		},
 		clearCompletedTodos() {
 			this.todos = this.uncompletedTodos;

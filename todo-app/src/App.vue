@@ -1,6 +1,6 @@
 <template>
 	<BaseHero :bg-image="currentImage" />
-	<div class="min-h-screen bg-my-gray-100 dark:bg-dark-blue-800">
+	<div class="min-h-screen bg-my-gray-100 dark:bg-dark-blue-800 overflow-hidden">
 		<div class="relative max-w-2xl px-5 mx-auto">
 			<TheHeader />
 			<TodoApp />

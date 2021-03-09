@@ -8,24 +8,36 @@
 		>
 			Nothing here 🍂
 		</p>
-		<ul
+		<transition-group
+			name="list"
+			tag="ul"
+			mode="out-in"
 			v-else
-			class="list-none divide-y-2 divide-my-gray-200 dark:divide-dark-grayish-blue-500"
+			class="list-none divide-y-2 divide-my-gray-200 dark:divide-dark-grayish-blue-500 flex flex-col relative"
 		>
-			<transition-group name="list" mode="out-in">
-				<TodoItem
-					v-for="todo in filteredTodos"
-					:key="todo.id"
-					:id="todo.id"
-					:content="todo.content"
-					:done="todo.done"
-					@toggle-todo="$emit('toggle-todo', $event)"
-					@delete-todo="$emit('delete-todo', $event)"
-				/>
-			</transition-group>
-		</ul>
+			<TodoItem
+				v-for="todo in filteredTodos"
+				:key="todo.id"
+				:id="todo.id"
+				:content="todo.content"
+				:done="todo.done"
+				@toggle-todo="$emit('toggle-todo', $event)"
+				@delete-todo="$emit('delete-todo', $event)"
+			/>
+			<TodoControls
+				:count="count"
+				@clear-completed="$emit('clear-completed')"
+			>
+				<template #filters>
+					<TodoFilter
+						@set-filter="setFilter"
+						class="hidden md:block"
+					/> </template
+			></TodoControls>
+		</transition-group>
 
 		<TodoControls
+			v-if="filteredTodos.length === 0"
 			:count="count"
 			@clear-completed="$emit('clear-completed')"
 		>
@@ -81,12 +93,6 @@ export default {
 </script>
 
 <style scoped>
-.list-enter-active {
-	transition: all 500ms ease-out 150ms;
-}
-.list-leave-active {
-	transition: all 500ms ease-in;
-}
 .list-enter-from {
 	opacity: 0;
 	transform: translateX(-20px);
@@ -94,10 +100,56 @@ export default {
 
 .list-leave-to {
 	opacity: 0;
-	transform: translateX(50px);
+}
+
+.list-enter-active {
+	transition: all 500ms ease-out 200ms;
+}
+
+.list-leave-active {
+	transition: all 500ms ease-in;
+	position: absolute;
+	width: 100%;
 }
 
 .list-move {
-	transition: transform 500ms ease-out;
+	transition: transform 500ms ease-in-out;
 }
+
+/* 
+
+.list-move {
+	transition: transform 1s;
+}
+
+.list-enter-active {
+	animation: slide-in 0.5s ease-out forwards;
+	transition: opacity 0.5s;
+}
+
+.list-leave-active {
+	position: absolute;
+	width: 100%;
+	animation: slide-out 0.5s ease-out forwards;
+	transition: opacity 0.5s;
+	opacity: 0;
+}
+
+@keyframes slide-in {
+	from {
+		transform: translateY(-20px);
+	}
+	to {
+		transform: translateY(0px);
+	}
+}
+
+@keyframes slide-out {
+	from {
+		transform: translateX(0px);
+	}
+	to {
+		transform: translateX(350px);
+	}
+} */
 </style>
