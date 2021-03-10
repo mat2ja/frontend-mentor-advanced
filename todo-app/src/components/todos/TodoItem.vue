@@ -5,14 +5,21 @@
 		@mouseleave="todoIsHovered = false"
 	>
 		<label
-			class="flex items-center py-4 pl-6 pr-5 md:py-5 md:pl-7 md:pr-6 cursor-pointer group"
+			class="py-4 pl-6 pr-5 md:py-5 md:pl-7 md:pr-6 cursor-pointer group"
 			@click="toggleCheckbox"
 		>
+			<!-- hover:bg-gradient-to-br hover:from-my-cyan hover:to-my-purple -->
+			<!-- bg-white dark:bg-dark-blue-700 -->
 			<div
-				:class="checkboxStyles"
-				class="relative flex-shrink-0 inline-block w-5 h-5 md:w-6 md:h-6 overflow-hidden rounded-full checkbox group-hover:border-my-purple"
+				:class="checkboxBorderStyles"
+				class="flex items-center p-0.5 rounded-full"
 			>
-				<CheckmarkIcon v-if="checked && !isNewTodo" />
+				<div
+					:class="checkboxStyles"
+					class="relative flex-shrink-0 inline-block w-5 h-5 md:w-6 md:h-6 overflow-hidden rounded-full checkbox transition duration-300 ease-in-out"
+				>
+					<CheckmarkIcon v-if="checked && !isNewTodo" />
+				</div>
 			</div>
 		</label>
 		<div class="flex flex-grow" :class="itemCheckedStyles">
@@ -73,22 +80,28 @@ export default {
 			}
 			return {};
 		},
+		checkboxBorderStyles() {
+			if (this.isNewTodo) {
+				return ['bg-gradient-to-br', ' from-my-cyan', ' to-my-purple'];
+			} else if (this.checked && !this.isNewTodo) {
+				return ['bg-gradient-to-br', ' from-my-cyan', ' to-my-purple'];
+				// return ['bg-blue-300'];
+			}
+			return ['bg-my-gray-200', ' dark:bg-dark-grayish-blue-500'];
+		},
 		checkboxStyles() {
 			if (this.checked && !this.isNewTodo) {
-				return ['checked', 'border-transparent'];
+				return ['bg-transparent'];
+				// return ['bg-blue-300'];
 			}
-			return [
-				'border-2',
-				'border-my-gray-200',
-				'dark:border-dark-grayish-blue-500',
-			];
+			return ['bg-white', 'dark:bg-dark-blue-700'];
 		},
 	},
 };
 </script>
 
 <style scoped>
-.checkbox.checked::before {
+/* .checkbox.checked::before {
 	content: '';
 	position: absolute;
 	top: -1px;
@@ -96,6 +109,14 @@ export default {
 	right: -1px;
 	bottom: -1px;
 	background: red;
+	background: linear-gradient(
+		to bottom right,
+		hsl(192, 100%, 67%),
+		hsl(280, 87%, 65%)
+	);
+} */
+
+label:hover > div {
 	background: linear-gradient(
 		to bottom right,
 		hsl(192, 100%, 67%),
