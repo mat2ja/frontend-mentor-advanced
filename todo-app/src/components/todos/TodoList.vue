@@ -24,20 +24,9 @@
 				@toggle-todo="$emit('toggle-todo', $event)"
 				@delete-todo="$emit('delete-todo', $event)"
 			/>
-			<TodoControls
-				:count="count"
-				@clear-completed="$emit('clear-completed')"
-			>
-				<template #filters>
-					<TodoFilter
-						@set-filter="setFilter"
-						class="hidden sm:block"
-					/> </template
-			></TodoControls>
 		</transition-group>
 
 		<TodoControls
-			v-if="filteredTodos.length === 0"
 			:count="count"
 			@clear-completed="$emit('clear-completed')"
 		>

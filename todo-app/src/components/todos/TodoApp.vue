@@ -83,8 +83,6 @@ export default {
 		},
 		deleteTodo(todoId) {
 			this.todos = this.todos.filter((todo) => todo.id != todoId);
-			// const todoIdx = this.todos.map((todo) => todo.id).indexOf(todoId);
-			// this.todos.splice(todoIdx, 1);
 		},
 		clearCompletedTodos() {
 			this.todos = this.uncompletedTodos;
