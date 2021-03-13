@@ -8,8 +8,6 @@
 			class="py-4 pl-6 pr-5 md:py-5 md:pl-7 md:pr-6 cursor-pointer group"
 			@click="toggleCheckbox"
 		>
-			<!-- hover:bg-gradient-to-br hover:from-my-cyan hover:to-my-purple -->
-			<!-- bg-white dark:bg-dark-blue-700 -->
 			<div
 				:class="checkboxBorderStyles"
 				class="flex items-center p-0.5 rounded-full"
@@ -25,7 +23,7 @@
 		<div class="flex flex-grow" :class="itemCheckedStyles">
 			<span
 				v-if="!isNewTodo"
-				class="flex items-center flex-grow push-down-1 md:push-down-2 py-2 pr-6"
+				class="flex items-center flex-grow py-2 pr-6"
 				@click="toggleCheckbox"
 			>
 				{{ content }}
@@ -85,14 +83,12 @@ export default {
 				return ['bg-gradient-to-br', ' from-my-cyan', ' to-my-purple'];
 			} else if (this.checked && !this.isNewTodo) {
 				return ['bg-gradient-to-br', ' from-my-cyan', ' to-my-purple'];
-				// return ['bg-blue-300'];
 			}
 			return ['bg-my-gray-200', ' dark:bg-dark-grayish-blue-500'];
 		},
 		checkboxStyles() {
 			if (this.checked && !this.isNewTodo) {
 				return ['bg-transparent'];
-				// return ['bg-blue-300'];
 			}
 			return ['bg-white', 'dark:bg-dark-blue-700'];
 		},
@@ -101,21 +97,6 @@ export default {
 </script>
 
 <style scoped>
-/* .checkbox.checked::before {
-	content: '';
-	position: absolute;
-	top: -1px;
-	left: -1px;
-	right: -1px;
-	bottom: -1px;
-	background: red;
-	background: linear-gradient(
-		to bottom right,
-		hsl(192, 100%, 67%),
-		hsl(280, 87%, 65%)
-	);
-} */
-
 label:hover > div {
 	background: linear-gradient(
 		to bottom right,

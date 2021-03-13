@@ -1,8 +1,10 @@
 <template>
-	<BaseHero :bg-image="currentImage" />
-	<div class="min-h-screen bg-my-gray-100 dark:bg-dark-blue-800 overflow-hidden">
+	<BaseHero :theme-dark="isDark" />
+	<div
+		class="min-h-screen bg-my-gray-100 dark:bg-dark-blue-800 overflow-hidden"
+	>
 		<div class="relative max-w-2xl px-5 mx-auto">
-			<TheHeader />
+			<TheHeader @set-theme="setTheme" />
 			<TodoApp />
 		</div>
 	</div>
@@ -21,27 +23,19 @@ export default {
 	},
 	data() {
 		return {
-			background: {
-				mobileLight: '../assets/img/bg-mobile-light.jpg',
-				mobileDark: '../assets/img/bg-mobile-dark.jpg',
-				desktopLight: '../assets/img/bg-desktop-light.jpg',
-				desktopDark: '../assets/img/bg-desktop-dark.jpg',
-			},
+			isDark: document.documentElement.classList.contains('dark'),
 		};
+	},
+	methods: {
+		setTheme(currIsDark) {
+			this.isDark = currIsDark;
+		},
+	},
+	created() {
+		console.log('Is theme dark? ' + this.isDark);
 	},
 };
 </script>
 
 <style>
-.push-down-1 {
-	transform: translateY(1px);
-}
-
-.push-down-2 {
-	transform: translateY(2px);
-}
-
-.push-down-4 {
-	transform: translateY(4px);
-}
 </style>

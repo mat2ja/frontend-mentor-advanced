@@ -4,7 +4,7 @@
 	>
 		<p
 			v-if="filteredTodos.length === 0"
-			class="p-5 text-2xl font-bold text-center push-down-1 text-my-gray-500 dark:text-dark-grayish-blue-200"
+			class="p-5 text-2xl font-bold text-center text-my-gray-500 dark:text-dark-grayish-blue-200"
 		>
 			Nothing here 🍂
 		</p>

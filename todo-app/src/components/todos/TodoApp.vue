@@ -4,7 +4,7 @@
 
 		<base-card v-if="isEmpty" class="pl-5 pr-5 pt-8 pb-8 text-center">
 			<p
-				class="push-down-2 font-bold text-3xl text-my-gray-500 dark:text-dark-grayish-blue-200"
+				class="font-bold text-3xl text-my-gray-500 dark:text-dark-grayish-blue-200"
 			>
 				Add some todos! 🥳
 			</p>

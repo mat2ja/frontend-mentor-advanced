@@ -4,7 +4,7 @@
 			<input
 				type="text"
 				placeholder="Create a new todo..."
-				class="push-down-2 focus:outline-none flex-1 bg-transparent placeholder-my-gray-400 dark:placeholder-dark-grayish-blue-300 pr-8"
+				class="focus:outline-none flex-1 bg-transparent placeholder-my-gray-400 dark:placeholder-dark-grayish-blue-300 pr-8"
 				v-model.trim="currentTodo"
 				@keydown.enter="addTodo"
 			/>
