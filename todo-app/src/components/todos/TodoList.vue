@@ -31,7 +31,7 @@
 				<template #filters>
 					<TodoFilter
 						@set-filter="setFilter"
-						class="hidden md:block"
+						class="hidden sm:block"
 					/> </template
 			></TodoControls>
 		</transition-group>
@@ -44,12 +44,12 @@
 			<template #filters>
 				<TodoFilter
 					@set-filter="setFilter"
-					class="hidden md:block"
+					class="hidden sm:block"
 				/> </template
 		></TodoControls>
 	</base-card>
 
-	<base-card class="flex justify-around p-4 md:p-5 md:hidden">
+	<base-card class="flex justify-around p-4 sm:p-5 sm:hidden">
 		<TodoFilter @set-filter="setFilter" />
 	</base-card>
 </template>

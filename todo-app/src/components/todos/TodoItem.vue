@@ -31,7 +31,7 @@
 			<slot v-else></slot>
 		</div>
 		<span
-			v-show="!isNewTodo && todoIsHovered"
+			v-show="!isNewTodo && todoIsHovered && !isSmallWidth"
 			class="flex items-center flex-shrink-0 px-5 ml-auto group"
 			@click="$emit('delete-todo', id)"
 		>
@@ -91,6 +91,12 @@ export default {
 				return ['bg-transparent'];
 			}
 			return ['bg-white', 'dark:bg-dark-blue-700'];
+		},
+	},
+	watch: {
+		windowWidth(width) {
+			console.log(width);
+			console.log('isSmallWidth: ' + this.isSmallWidth);
 		},
 	},
 };
