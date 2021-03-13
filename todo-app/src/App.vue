@@ -31,9 +31,6 @@ export default {
 			this.isDark = currIsDark;
 		},
 	},
-	created() {
-		console.log('Is theme dark? ' + this.isDark);
-	},
 };
 </script>
 

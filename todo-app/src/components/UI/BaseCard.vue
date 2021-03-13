@@ -5,3 +5,9 @@
 		<slot></slot>
 	</article>
 </template>
+
+<style scoped>
+article {
+	box-shadow: 0 8px 16px 5px rgba(0, 0, 0, 0.03);
+}
+</style>
